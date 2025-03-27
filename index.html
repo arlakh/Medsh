@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medsh - The Chemistry of Nucleic Acids</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Serif:wght@300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>  
+        /* RESET */  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+            font-family: 'Inter', sans-serif;  
+            transition: all 0.3s ease;  
+        }  
+  
+        /* BODY */  
+        body {  
+            background: #f4f4f6;  
+            color: #1a1a1a;  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            padding: 10px;  
+            min-height: 100vh;  
+        }  
+        /* Importing Futuristic Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo:wght@300;600&family=Rajdhani:wght@400;600&display=swap');
+
+/* CONTENT BOX - Futuristic, Clean, and Minimal */
+.content-box {
+    background: #ffffff;
+    padding: 20px 25px;
+    margin: 15px 0;
+    border-radius: 12px;
+    border: 1px solid #aaa;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Rajdhani', sans-serif; /* Try 'Exo' or 'Rajdhani' for variations */
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    color: #222; /* Optional for more futuristic styling */
+}
+
+/* DARK MODE - Adjust for readability */
+.dark-mode .content-box {
+    background: #111;
+    color: #eee;
+    border: 1px solid #555;
+    box-shadow: 0px 2px 12px rgba(255, 255, 255, 0.1);
+}
+header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', monospace;  
+  font-size: 30px;
+  font-weight: 800;
+  cursor: none;
+  color: #66ACA0;
+  padding: 18px 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* MENU BUTTON - Three Dots */
+.menu-container {
+  position: relative;
+}
+
+.menu-button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: none;
+  color: #222;
+  padding: 5px;
+}
+
+.dark-mode .menu-button {
+  color: #ddd;
+  
+}
+
+/* MENU DROPDOWN */
+
+/* Overlay Effect */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent overlay */
+    backdrop-filter: blur(5px); /* Blurs the background */
+    display: none;
+    z-index: 5;
+}
+
+/* Ensure menu appears above overlay */
+.menu-dropdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 25vh;
+    display: none;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 2px solid black;
+    z-index: 10; /* Keep it above overlay */
+    transform: translate(-130%, 30%);
+}
+.menu-dropdown a {
+  padding: 12px;
+  text-decoration: none;
+  color: #222;
+  cursor: none;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  border : 0.1px solid #000;
+}
+
+.menu-dropdown a:hover {
+  background: #ACD5D194;
+}
+
+/* DARK MODE */
+.dark-mode .menu-dropdown {
+  background: #1e1e1e;
+  border : 2px solid #ccc;
+}
+.dark-mode .menu-button{
+  background: transparent;
+}
+.dark-mode .menu-dropdown a {
+  color: #66ACA0;
+  border : 0.1px solid #ccc;
+}
+
+.dark-mode .menu-dropdown a:hover {
+  background: #618078;
+}
+  
+        /* TITLE */  
+        h1 {  
+            font-size: 42px;  
+            padding: 20px;  
+            font-weight: 700;  
+            text-align: center;  
+            margin: 20px 0;  
+            font-family: 'Playfair Display', serif;  
+        }  
+  
+        /* CONTENT BOX */  
+        .content-box {  
+            background: #ffffff;  
+            padding: 15px;  
+            margin: 10px 0;  
+            border-radius: 10px;  
+            border: 1px solid gray;  
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  
+        }  
+  
+        /* COLLAPSIBLE SECTIONS */  
+        details {  
+            background: #f9f9fb;  
+            padding: 15px;  
+            margin: 8px 0;  
+            border-radius: 10px;  
+            border: 1px solid #ccc;  
+            font-family: 'Roboto Mono', monospace;
+        }  
+  
+        details[open] {  
+            background: #B8BFBE30;  
+            border-left: 3px solid #66ACA0;  
+        }  
+  
+        details summary {  
+            font-size: 16px;  
+            font-weight: 600;  
+            padding: 12px;  
+        }  
+  
+        details p, details ul {  
+            padding: 10px;  
+            margin-top: 5px;  
+        }  
+  
+        /* DARK MODE BUTTON */  
+        .toggle-dark-mode {  
+            position: fixed;  
+            bottom: 5%;  
+            right: 15px;  
+            padding: 10px 15px;  
+            font-size: 14px;  
+            background: #222;  
+            color: white;  
+            border: none;  
+            border-radius: 50px;  
+            cursor: none;  
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 1);  
+        }  
+  
+        .toggle-dark-mode:hover {  
+            background: #444;  
+        }  
+  
+        /* DARK MODE */  
+        .dark-mode {  
+            background-color: #1e1e1e;  
+            color: #ddd;  
+            transition: background-color 0.5s ease, color 0.5s ease;  
+        }  
+  
+        .dark-mode .content-box {  
+          background: gray;
+          border: 1px solid #ddd; 
+            box-shadow: 2px 5px 20px rgba(250, 250, 250, 0.4);  
+        }  
+  
+        .dark-mode details {  
+            background: #000;  
+            border-left: 3px solid #66ACA0;  
+        }  
+  
+        .dark-mode details[open] {  
+            background: #222;  
+        }  
+  
+        .dark-mode button {  
+            background: #333;  
+            color: white;  
+        }  
+  
+        .dark-mode .toggle-dark-mode {  
+            background: #ddd;  
+            color: #222;  
+            opacity: 70%;
+            box-shadow: 0 4px 10px white;   
+        }  
+       
+  
+        .dark-mode .toggle-dark-mode:hover {  
+            background: #bbb;  
+        }  
+  
+        /* FOOTER */  
+        footer {  
+            text-align: center;  
+            padding: 20px;  
+            font-size: 14px;  
+            color: #666;  
+        }  
+  
+        html {  
+            scroll-behavior: smooth;  
+        }  
+    </style>  
+</head>
+<body>
+
+<header>
+  <strong class="logo" style="background: linear-gradient(to right, #66ACA0, #1a1a1a);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;font-family: 'Press Start 2P', monospace ;  ">Medsh</strong>
+    <div class="menu-container">
+        <button class="menu-button" onclick="toggleMenu()">&#x22EE;</button>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+</header>
+
+<!-- Dark Mode Toggle -->
+<button class="toggle-dark-mode" onclick="document.body.classList.toggle('dark-mode')">Dark Mode</button>
+
+<div class="container">
+    <h1>The Chemistry of Nucleic Acids: DNA & RNA Explained</h1>
+    <p><strong >Published on  <strong class="logo" style="font-family: 'Press Start 2P', monospace; font-size: 12px; background: linear-gradient(to right, #66ACA0, black);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;">Medsh</strong></strong></p>
+
+    <div class="content-box">
+        <details>
+            <summary>What Are Nucleic Acids?</summary>
+            <div>
+                Nucleic acids are large biomolecules essential for life. They carry genetic information and play a key role in protein synthesis. There are two main types: • DNA (deoxyribonucleic acid) and • RNA (ribonucleic acid).<br> DNA is double-stranded and carries genetic instructions, while RNA is single-stranded and assists in protein synthesis.
+            </div>
+        </details>
+
+        <details>
+            <summary>Structure of Nucleic Acids</summary>
+            <div>
+                Nucleic acids are composed of basic units called nucleotides. Each nucleotide consists of three components:
+                • A nitrogenous base (adenine, thymine, guanine, cytosine, or uracil)  
+                • A five-carbon sugar (deoxyribose in DNA, ribose in RNA)  
+                • A phosphate group  
+                The nucleotides are linked together by phosphodiester bonds, forming the backbone of the nucleic acid chain.
+            </div>
+        </details>
+
+        <details>
+            <summary>Differences Between DNA and RNA</summary>
+            <div>
+                DNA and RNA differ in several ways:  
+                • DNA contains deoxyribose sugar, whereas RNA contains ribose.  
+                • DNA has the nitrogen base thymine, while RNA has uracil instead.  
+                • DNA is double-stranded and forms a helical structure, while RNA is usually single-stranded.  
+                • DNA is stable and primarily stores genetic information, whereas RNA is more temporary and involved in protein synthesis.
+            </div>
+        </details>
+
+        <details>
+            <summary>Types of RNA</summary>
+            <div>
+                RNA comes in different forms, each with a specific function in the cell:  
+                • Messenger RNA (mRNA) carries genetic information from DNA to ribosomes for protein synthesis.  
+                • Ribosomal RNA (rRNA) is a structural component of ribosomes, aiding in protein assembly.  
+                • Transfer RNA (tRNA) transports amino acids to the ribosome during protein synthesis.  
+                • Small RNA molecules play regulatory roles in gene expression.
+            </div>
+        </details>
+
+        <details>
+            <summary>Functions of Nucleic Acids</summary>
+            <div>
+                The primary functions of nucleic acids include:  
+                • DNA stores and transmits genetic information.  
+                • RNA helps in the translation of genetic code into proteins.  
+                • DNA replication ensures genetic continuity between generations.  
+                • RNA molecules regulate gene expression and cellular processes.
+            </div>
+        </details>
+
+        <details>
+            <summary>DNA Replication</summary>
+            <div>
+                DNA replication is a biological process where DNA makes an identical copy of itself. The steps include:  
+                • Unwinding of the double helix by helicase enzyme.  
+                • Formation of a replication fork where DNA polymerase adds complementary nucleotides.  
+                • Leading and lagging strand synthesis occurs simultaneously.  
+                • DNA ligase seals gaps, ensuring a continuous DNA strand.  
+                This process is semi-conservative, meaning each new DNA molecule consists of one original strand and one newly synthesized strand.
+            </div>
+        </details>
+
+        <details>
+            <summary>Transcription and Translation</summary>
+            <div>
+                Gene expression occurs through two main steps:  
+                • Transcription: DNA is transcribed into mRNA inside the nucleus. RNA polymerase helps in synthesizing the mRNA strand using a DNA template.  
+                • Translation: The mRNA is translated into a protein at the ribosome. tRNA brings amino acids, and ribosomes assemble them into a polypeptide chain based on the genetic code.  
+                These processes are fundamental to protein synthesis and cellular function.
+            </div>
+        </details>
+
+        <details>
+            <summary>Mutations and Their Effects</summary>
+            <div>
+                Mutations are changes in the nucleotide sequence of DNA. They can be caused by errors in replication, radiation, or chemicals. Types of mutations include:  
+                • Point mutations (single nucleotide changes)  
+                • Frameshift mutations (insertion or deletion of nucleotides)  
+                • Silent mutations (no effect on protein function)  
+                • Harmful mutations (cause genetic disorders like sickle cell anemia)  
+                Some mutations can be beneficial and contribute to evolution.
+            </div>
+        </details>
+
+        <details>
+            <summary>Applications of Nucleic Acid Chemistry</summary>
+            <div>
+                The study of nucleic acids has many applications in science and medicine:  
+                • Genetic engineering allows scientists to modify DNA for agricultural and medical purposes.  
+                • Polymerase Chain Reaction (PCR) is used for DNA amplification in forensic science and disease detection.  
+                • CRISPR technology enables precise gene editing, offering potential cures for genetic disorders.  
+                • DNA sequencing helps in understanding genetic diseases and evolutionary relationships.  
+                The advancements in nucleic acid research continue to revolutionize biotechnology and medicine.
+            </div>
+        </details>
+    </div>
+
+    <footer>&copy; 2025 Medsh | All Rights Reserved</footer>
+</div>
+
+<script>
+    document.querySelectorAll("details").forEach(detail => {
+  detail.addEventListener("toggle", function() {
+    if (this.open) {
+      let content = this.querySelector("div");
+      if (content) {
+        let text = content.dataset.originalText || content.innerHTML; // Use a stored original text if available
+        
+        // Ensure "• item" appears on a new line but avoids adding extra <br> if already present
+        text = text.replace(/(?<!<br>)• /g, "<br>• ");
+        
+        // Store the original text to prevent unnecessary resets
+        content.dataset.originalText = text;
+        
+        // If content is already fully typed, don't restart animation
+        if (content.innerHTML === text) return;
+        
+        content.innerHTML = ""; // Clear existing text
+        
+        let i = 0;
+        clearInterval(content.typingInterval); // Clear previous interval to prevent shaking
+        
+        content.typingInterval = setInterval(() => {
+          if (i < text.length) {
+            content.innerHTML = text.substring(0, i + 1);
+            i++;
+          } else {
+            clearInterval(content.typingInterval);
+          }
+        }, 20);
+      }
+    }
+  });
+});
+    function toggleMenu() {
+  let menu = document.getElementById("menuDropdown");
+  let overlay = document.getElementById("overlay");
+  
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+    overlay.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+    overlay.style.display = "block";
+  }
+}
+
+/* Hide menu when clicking outside */
+document.addEventListener("click", function(event) {
+  let menu = document.getElementById("menuDropdown");
+  let overlay = document.getElementById("overlay");
+  let menuButton = document.querySelector(".menu-button");
+  
+  if (
+    menu.style.display === "flex" &&
+    event.target !== menu &&
+    event.target !== menuButton &&
+    !menu.contains(event.target)
+  ) {
+    menu.style.display = "none";
+    overlay.style.display = "none";
+  }
+});
+</script>
+</body>
+  </html>
