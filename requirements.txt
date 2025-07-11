@@ -1,0 +1,21 @@
+# Core ML libraries
+torch>=2.1.0
+transformers>=4.36.0
+accelerate>=0.25.0
+peft>=0.7.1
+datasets>=2.14.0
+bitsandbytes>=0.41.1
+
+# UI and utilities
+gradio>=4.7.1
+sentencepiece>=0.1.99
+protobuf>=3.20.3
+
+# Additional utilities
+numpy>=1.24.0
+requests>=2.31.0
+pathlib2>=2.3.7
+
+# Optional: for better performance
+flash-attn>=2.3.0
+xformers>=0.0.22
